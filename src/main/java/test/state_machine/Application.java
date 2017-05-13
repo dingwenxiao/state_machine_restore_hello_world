@@ -2,29 +2,25 @@ package test.state_machine;
 
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.statemachine.StateMachine;
-import org.springframework.statemachine.StateMachineContext;
-import org.springframework.statemachine.persist.DefaultStateMachinePersister;
 import org.springframework.statemachine.persist.StateMachinePersister;
 
-import test.state_machine.call.CallEvents;
-import test.state_machine.call.CallStates;
 import test.state_machine.order.OrderEvents;
 import test.state_machine.order.OrderStateMachineBuilder;
 import test.state_machine.order.OrderStates;
-import test.state_machine.serialize.InMemoryStateMachinePersist;
+import test.state_machine.serialize.HazelcastStateMachineContextPersister;
+import test.state_machine.serialize.HazelcastStateMachinePersist;
 
 @SpringBootApplication
 public class Application implements CommandLineRunner {
 
-  private StateMachinePersister<OrderStates, OrderEvents, String> orderStateMachinePersister = new DefaultStateMachinePersister<>(new InMemoryStateMachinePersist<OrderStates,OrderEvents>());
+  private StateMachinePersister<OrderStates, OrderEvents, String> orderStateMachinePersister = new HazelcastStateMachineContextPersister<>(new HazelcastStateMachinePersist<OrderStates,OrderEvents>());
   
   //@Autowired
-  //private InMemoryStateMachinePersist<CallStates,CallEvents> callStateMachinePersist;
+  //private HazelCastStateMachinePersist<CallStates,CallEvents> callStateMachinePersist;
   
   public static void main(String[] args) {
       SpringApplication.run(Application.class, args);
