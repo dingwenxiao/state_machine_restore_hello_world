@@ -1,4 +1,4 @@
-# Sample - Persisting and retoring spring statemachine 
+# Sample - Persisting and Restoring Spring StateMachine 
 Sometimes, we need to persist to and restore a state machine from Hazelcast, resdis and so on. 
 One will learn from the sample :
 1. what those meta data needed to restore a statemachine 
